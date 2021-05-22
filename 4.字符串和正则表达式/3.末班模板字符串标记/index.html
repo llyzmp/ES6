@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p>
+    <textarea id="txt"> </textarea>
+    <button id="btn">设置div的内容</button>
+  </p>
+  <div id="container"></div>
+  <script>
+    const container = document.getElementById('container');
+    const txt = document.getElementById('txt');
+    const btn = document.getElementById('btn');
+
+    // 防止用户内容输入标签之类的东西
+    btn.onclick = function () {
+      container.innerHTML = safe`<p>
+      ${txt.value}
+      </p>`
+    }
+
+    function safe(parts) {
+      const values = Array.prototype.slice.apply(arguments).slice(1);
+      let str = '';
+      for (let i = 0; i <g, values.length; i++) {
+        const v = values[i].replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        str += `${parts[i]}${v}`;
+        if (i === values.length - 1) {
+          str += parts[i + 1];
+        }
+      }
+      return str;
+    }
+  </script>
+</body>
+
+</html>
