@@ -13,7 +13,6 @@ class Reactangle {
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
     this.dom = dom;
-    this.render();
   }
   // 各个矩形的形状
   render() {

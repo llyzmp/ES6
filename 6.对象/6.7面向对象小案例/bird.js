@@ -11,10 +11,6 @@ const gameDom = document.querySelector('.game');
 
 const gameHeight = gameDom.clientHeight;
 
-
-
-
-
 //  小鸟有自己的属性, 加速度
 class Bird extends Reactangle {
   constructor() {
@@ -28,6 +24,7 @@ class Bird extends Reactangle {
     this.swingStatus = 1;  
     // 翅膀煽动的计时器
     this.timer = null; 
+    this.render();
   }
   render() {
     super.render(); // 重用父类的渲染逻辑
@@ -69,7 +66,7 @@ class Bird extends Reactangle {
 
   // 向上跳 ,直接给一个向上的速度
   jump() {
-    this.ySpeed = -550;
+    this.ySpeed = -450;
   }
 }
 
