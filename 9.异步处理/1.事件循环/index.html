@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul></ul>
+
+  <script>
+
+    // 监听ul     // 创建实例对象时传入的函数会放入微队列中
+    const observer = new MutationObserver(() => {
+      // 当监听的dom元素发生变化时运行的回调函数
+      console.log('ul元素发生了变化');
+    })
+    // 监听ul
+    observer.observe(ul, {
+      attributes: true,   // 监听属性的变化
+      childList: true, // 监听子元素的变化
+      subtree: true,  // 监听子树的变化
+    })
+    // 取消监听
+    // observer.disconnect();
+  </script>
+</body>
+</html>
