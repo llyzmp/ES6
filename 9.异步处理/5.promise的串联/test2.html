@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // // 1.
+    // const pro1 = new Promise((resolve,reject)=>{
+    //   resolve(1);
+    // })
+    // const pro2 = pro1.then(result => result *2);
+    // // pro2的类型是Promise对象
+    // // pro2的状态pending
+    // console.log(pro2);
+
+    // // 2.
+    // const pro1 = new Promise((resolve,reject)=>{
+    //   resolve(1);
+    // })
+    // const pro2 = pro1.then(result => result *2);
+    // // pro2的类型是Promise对象
+    // // pro2的状态 resolved
+    // pro2.then(result => console.log(result),err=>console.log(err));
+    
+    // // 输出:2
+    
+
+    // // 3.
+    // const pro1 = new Promise((resolve,reject)=>{
+    //   throw 1;
+    // })
+    // const pro2 = pro1.then(result => {
+    //   return result *2
+    // },err => err*3);
+    // // pro2的类型是Promise对象
+    // // pro2的状态 rejected
+    // pro2.then(result => { 
+    //   console.log(result); // 执行这个 输出3, 因为pro2并没有抛出异常,而是正常输出
+    // }, err=> {
+    //   console.log(err)
+    // });
+    
+    // 输出: 3
+
+
+    //  4.
+    const pro1 = new Promise((resolve,reject)=>{
+      throw 1;
+    })
+    const pro2 = pro1.then(result => {
+      return result *2
+    },err => err * 3);
+    // 这个得到的是一个新的promise
+    pro1.catch(err => {
+      return err * 2;
+    })
+    // pro2的类型是Promise对象
+    // pro2的状态 rejected
+    pro2.then(result => {   // 这里用的是err*3,  pro2只管看它第一次调用的结果
+      console.log(result * 2); 
+    }, err=> {
+      console.log(err * 3)
+    });
+  </script>
+</body>
+</html>
