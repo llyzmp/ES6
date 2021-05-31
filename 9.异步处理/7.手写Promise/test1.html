@@ -11,8 +11,37 @@
   <script>
 
     const pro = new MyPromise((resolve,reject)=>{
-      resolve(1);
+      setTimeout(() => {
+        resolve(1);
+        // reject(1);
+      }, 500);
+
+
+      // throw new Error('错误')
     })
+    pro.then((res)=>{
+      console.log('1',res)
+    })
+    pro.then((res)=>{
+      console.log('2',res)
+    })
+    pro.then((res)=>{
+      console.log('3',res)
+    })
+    pro.catch((res)=>{
+      console.log('1',res)
+    })
+    pro.catch((res)=>{
+      console.log('2',res)
+    })
+    pro.catch((res)=>{
+      console.log('3',res)
+    })
+
+    pro.then(res => {
+      console.log('ca',res)
+    },err => console.log('bbb',err))
+    console.log(pro)
   </script>
 </body>
 </html>
