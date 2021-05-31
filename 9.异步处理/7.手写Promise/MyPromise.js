@@ -1,3 +1,6 @@
+/**
+ * 写到后续处理
+ */
 const MyPromise = (()=>{
   const PENDING = 'pending',
   RESOLVED = 'resolved',
