@@ -121,10 +121,22 @@ const MyPromise = (()=>{
       return new MyPromise((resolve,reject)=>{
         // 
         this[settleHandle](data => {
+          // 判断thenable传入的是不是一个函数
+          if(typeof thenable !== 'function') {
+            // 父级promise没有注册thenable
+            resolve(data);
+            return;
+          }
           exec(data,thenable,resolve,reject)
         },RESOLVED,this[thenables]);
 
         this[settleHandle](err => {
+          // 判断thenable传入的是不是一个函数
+          if(typeof catchable !== 'function') {
+            // 父级promise没有注册catchable
+            reject(data);
+            return;
+          }
           exec(err,catchable,resolve,reject)
          
         },REJECTED,this[catchables]);
