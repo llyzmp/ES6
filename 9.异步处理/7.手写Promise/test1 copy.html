@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./MyPromise copy.js"></script>
+  <script>
+
+    const pro = new MyPromise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve(1);
+        // reject(1);
+      }, 500);
+      // throw new Error('错误')
+    })
+    pro.then(data => {
+      console.log(1,data)
+      return 123;
+    }).then(data => {
+      console.log(2,data)
+      return new MyPromise(resolve => {
+        resolve(456)
+      })
+    }).then(data => {
+      console.log(3,data)
+    })
+   
+    console.log(pro)
+  </script>
+</body>
+</html>
