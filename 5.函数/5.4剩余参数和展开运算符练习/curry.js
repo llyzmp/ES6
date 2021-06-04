@@ -3,7 +3,7 @@
 function cal(a,b,c,d) {
   return a + b*c -d;
 }
-// curry: 柯理化,用户固定某个函数的前面的参数,得到一个新的函数,新的韩束调用时,接收剩余参数
+// curry: 柯理化,用户固定某个函数的前面的参数,得到一个新的函数,新的函数调用时,接收剩余参数
 function curry(func,...args) {
   return function (...subargs) {
     const allArgs = [...args,...subargs];
@@ -25,3 +25,27 @@ console.log(newCal(7,8)) // 1+2*7-8
 const newCal2 = newCal(9);
 
 console.log(newCal2(10)); //1+2*9-10 curry(cal,1,2)(9)(10)
+
+
+
+
+// 复盘回顾
+
+// function temp(a,b,c,d) {
+//   return a*b+c*d
+// }
+// function curry(func,...args) {
+//   return function(...subargs) {
+//     const allArgs = [...args,...subargs];
+//     if(allArgs.length >= func.length){
+//       return func(...allArgs)
+//     }else {
+//       return curry(func,...allArgs)
+//     }
+//   }
+// }
+
+// let newTemp = curry(temp,3,4)
+
+
+// console.log(newTemp(5)(7))
