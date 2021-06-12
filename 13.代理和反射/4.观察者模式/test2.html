@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+
+  </div>
+  <script>
+
+
+    // 创建一个观察者
+    function observer(target) {
+      // 获取div
+      let div = document.getElementById('container');
+      // 使用代理Proxy
+      const proxy = new Proxy(target,{
+        set(target,prop,value) {
+          Reflect.set(target,prop,value);
+          render();
+        },
+        get(target,prop) {
+          return Reflect.get(target,prop)
+        }
+      })
+      // 最开始渲染一次
+      render();
+      function render() {
+        // 给div重新赋值
+        let html = '';
+        for(const prop of Object.keys(target)) {
+          html += `
+            <p><span>${prop}:</span><span>${target[prop]}</span></p>
+          `
+        }
+        div.innerHTML = html;
+      }
+
+      return proxy;
+    }
+
+
+    const obj = observer({
+      a:1,
+      b:2
+    })
+  </script>
+</body>
+</html>
