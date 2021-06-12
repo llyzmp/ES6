@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+
+  </div>
+  <script>
+
+
+    // 创建一个观察者
+    function observer(target) {
+      // 获取div
+      let div = document.getElementById('container');
+      const ob = {};
+      const props = Object.keys(target);
+      for(const prop of props) {
+        Object.defineProperty(ob,prop,{
+          get() {
+            return target[prop];
+          },
+          set(val) {
+            target[prop] = val;
+            // 设置新值的时候,调用渲染函数,重新渲染
+            render()
+          },
+          // 默认不可被枚举,要配置一下
+          enumerable: true
+        })
+      }
+      // 最开始渲染一次
+      render();
+      function render() {
+        // 给div重新赋值
+        let html = '';
+        for(const prop of Object.keys(ob)) {
+          html += `
+            <p><span>${prop}:</span><span>${ob[prop]}</span></p>
+          `
+        }
+        div.innerHTML = html;
+      }
+
+      return ob;
+    }
+
+
+    const obj = observer({
+      a:1,
+      b:2
+    })
+  </script>
+</body>
+</html>
