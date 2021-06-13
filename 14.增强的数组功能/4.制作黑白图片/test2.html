@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 从服务器获取文件
+    async function test() {
+      const resp = await fetch('./img/路飞.jpg')
+      // 使用blob,图片数据是二进制格式,使用blob解析,返回的是blob对象,表示的是文件信息
+      const blob = await resp.blob();
+      console.log(blob)
+      // blob有一个函数,是一个promise,文件的buffer信息
+      const bf = await blob.arrayBuffer();
+      console.log(bf)
+    }
+  </script>
+</body>
+</html>
