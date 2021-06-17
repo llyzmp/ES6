@@ -1,0 +1,17 @@
+{
+  "name": "test666888",
+  "version": "1.0.0",
+  "description": "this is test package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "lly <1776321381@qq.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
